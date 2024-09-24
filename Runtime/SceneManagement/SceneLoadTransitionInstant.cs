@@ -1,3 +1,4 @@
+#if UNITY_ADDRESSABLES
 namespace CupkekGames.Core
 {
   // Do not use struct, because we need to pass it by reference
@@ -18,3 +19,4 @@ namespace CupkekGames.Core
     }
   }
 }
+#endif

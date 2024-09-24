@@ -1,9 +1,10 @@
-﻿using System;
+﻿#if UNITY_LOCALIZATION
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace CupkekGames.Core
 {
@@ -117,3 +118,4 @@ namespace CupkekGames.Core
     }
   }
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_ADDRESSABLES
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,3 +10,4 @@ namespace CupkekGames.Core
     public KeyValueDatabase<string, SceneLoadTransition> Transitions = new(); // 0 - instant, 1 - fade, 2 - Circle
   }
 }
+#endif

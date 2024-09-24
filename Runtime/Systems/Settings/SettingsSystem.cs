@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.Localization.Settings;
 using UnityEngine.Rendering.Universal;
+
+#if UNITY_LOCALIZATION
+using UnityEngine.Localization.Settings;
+#endif
 
 namespace CupkekGames.Core
 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_ADDRESSABLES
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -61,3 +62,4 @@ namespace CupkekGames.Core
     }
   }
 }
+#endif

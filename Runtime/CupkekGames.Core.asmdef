@@ -25,6 +25,11 @@
             "name": "com.unity.addressables",
             "expression": "",
             "define": "UNITY_ADDRESSABLES"
+        },
+        {
+            "name": "com.unity.localization",
+            "expression": "",
+            "define": "UNITY_LOCALIZATION"
         }
     ],
     "noEngineReferences": false

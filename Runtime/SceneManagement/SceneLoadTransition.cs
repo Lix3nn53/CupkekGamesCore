@@ -1,3 +1,4 @@
+#if UNITY_ADDRESSABLES
 using UnityEngine;
 
 namespace CupkekGames.Core
@@ -22,3 +23,4 @@ namespace CupkekGames.Core
     public abstract void FadeOut();
   }
 }
+#endif

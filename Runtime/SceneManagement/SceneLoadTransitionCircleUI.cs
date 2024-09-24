@@ -1,3 +1,4 @@
+#if UNITY_ADDRESSABLES
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,3 +44,4 @@ namespace CupkekGames.Core
     }
   }
 }
+#endif

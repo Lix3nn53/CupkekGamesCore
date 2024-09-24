@@ -1,7 +1,10 @@
 using System.Runtime.Serialization;
 using UnityEngine;
+
+#if UNITY_LOCALIZATION
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+#endif
 
 namespace CupkekGames.Core
 {
@@ -13,9 +16,11 @@ namespace CupkekGames.Core
     // The variables need to be public, else we would have to write trivial getter/setter functions.
 
     // Gameplay settings
+#if UNITY_LOCALIZATION
     public LocaleIdentifier LocaleIdentifier = new LocaleIdentifier("en");
     public Locale Locale => LocalizationSettings.AvailableLocales.GetLocale(LocaleIdentifier);
     public int LocaleIndex => LocalizationSettings.AvailableLocales.Locales.IndexOf(Locale);
+#endif
 
     // Audio settings
     public float MasterVolume;
@@ -120,7 +125,9 @@ namespace CupkekGames.Core
 
     public void CopyValuesFrom(SettingsData copy)
     {
+#if UNITY_LOCALIZATION
       LocaleIdentifier = copy.LocaleIdentifier;
+#endif
       MasterVolume = copy.MasterVolume;
       MusicVolume = copy.MusicVolume;
       AmbientVolume = copy.AmbientVolume;
@@ -153,8 +160,7 @@ namespace CupkekGames.Core
         return false;
       }
 
-      return
-             a.LocaleIdentifier == b.LocaleIdentifier &&
+      bool result =
              a.MasterVolume == b.MasterVolume &&
              a.MusicVolume == b.MusicVolume &&
               a.AmbientVolume == b.AmbientVolume &&
@@ -171,11 +177,19 @@ namespace CupkekGames.Core
              a.Shadows == b.Shadows &&
              a.TextureQuality == b.TextureQuality &&
              a.EffectsQuality == b.EffectsQuality;
+
+#if UNITY_LOCALIZATION
+      result = result && a.LocaleIdentifier == b.LocaleIdentifier;
+#endif
+
+      return result;
     }
 
     public void GetObjectData(SerializationInfo info, StreamingContext context)
     {
+#if UNITY_LOCALIZATION
       info.AddValue("LocaleIdentifier", LocaleIdentifier, typeof(LocaleIdentifier));
+#endif
       info.AddValue("MasterVolume", MasterVolume);
       info.AddValue("MusicVolume", MusicVolume);
       info.AddValue("AmbientVolume", AmbientVolume);
@@ -201,7 +215,9 @@ namespace CupkekGames.Core
 
     public SettingsData(SerializationInfo info, StreamingContext context)
     {
+#if UNITY_LOCALIZATION
       LocaleIdentifier = (LocaleIdentifier)info.GetValue("LocaleIdentifier", typeof(LocaleIdentifier));
+#endif
       MasterVolume = info.GetSingle("MasterVolume");
       MusicVolume = info.GetSingle("MusicVolume");
       AmbientVolume = info.GetSingle("AmbientVolume");
