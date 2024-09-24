@@ -6,7 +6,7 @@ namespace CupkekGames.Core
 {
   public class CoreEventDatabase : MonoBehaviour
   {
-    [Header("Settings Events")]
+    // Settings Events
     public Action<int> ResolutionChangeEvent;
     public Action SaveSettingsEvent;
     public Action<float> MasterVolumeChangeEvent;
@@ -14,14 +14,14 @@ namespace CupkekGames.Core
     public Action<float> AmbientVolumeChangeEvent;
     public Action<float> SFXVolumeChangeEvent;
 
+    // Scene Management Events
+    public Action<bool, float> LoadingScreenToggleEvent; // fadeIn, duration
 #if UNITY_ADDRESSABLES
-    [Header("Scene Management Events")]
 
     public Action<List<SceneSO>> SceneReadyEvent;
     public Action<List<SceneSO>> SceneUnloadEvent;
-    public Action<bool, float> LoadingScreenToggleEvent; // fadeIn, duration
 #endif
-    [Header("Input Events")]
+    // Input Events
     public Action InputEscapeEvent;
   }
 }
