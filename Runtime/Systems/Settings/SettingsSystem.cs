@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+
+#if UNITY_URP
 using UnityEngine.Rendering.Universal;
+#endif
 
 #if UNITY_LOCALIZATION
 using UnityEngine.Localization.Settings;
@@ -15,8 +18,10 @@ namespace CupkekGames.Core
     public SettingsSO DefaultSettings { get => _defaultSettings; }
     [SerializeField] private CoreEventDatabase _coreEventDatabase;
 
+#if UNITY_URP
     [Header("URP Settings Assets [0 = low, 1 = medium, 2 = high, 3 = ultra]")]
     [SerializeField] private UniversalRenderPipelineAsset[] _renderPipelineAssets; // 0 = low, 1 = medium, 2 = high, 3 = ultra
+#endif
 
     private void Awake()
     {
@@ -35,14 +40,20 @@ namespace CupkekGames.Core
     private void Start()
     {
       // Gameplay Settings
+#if UNITY_LOCALIZATION
       ApplyLocale(CurrentSettings.Data);
+#endif
 
       // Graphics Settings
       ApplyTargetFrameRate(CurrentSettings.Data);
       ApplyVSync(CurrentSettings.Data);
-      ApplyAntiAliasing(CurrentSettings.Data);
       ApplyPostProcessing(CurrentSettings.Data);
-      ApplyShadows(CurrentSettings.Data);
+
+#if UNITY_URP
+      ApplyAntiAliasingURP(CurrentSettings.Data);
+      ApplyShadowsURP(CurrentSettings.Data);
+#endif
+
       ApplyTextureQuality(CurrentSettings.Data);
       ApplyEffectsQuality(CurrentSettings.Data);
 
@@ -60,16 +71,22 @@ namespace CupkekGames.Core
       Debug.Log("Applying settings");
 
       // Gameplay Settings
+#if UNITY_LOCALIZATION
       ApplyLocale(settingsData);
+#endif
 
       // Graphics Settings
       ApplyResolution(settingsData);
       ApplyFullScreenMode(settingsData);
       ApplyTargetFrameRate(settingsData);
       ApplyVSync(settingsData);
-      ApplyAntiAliasing(settingsData);
       ApplyPostProcessing(settingsData);
-      ApplyShadows(settingsData);
+
+#if UNITY_URP
+      ApplyAntiAliasingURP(CurrentSettings.Data);
+      ApplyShadowsURP(CurrentSettings.Data);
+#endif
+
       ApplyTextureQuality(settingsData);
       ApplyEffectsQuality(settingsData);
 
@@ -77,10 +94,12 @@ namespace CupkekGames.Core
       ApplyAudio(settingsData);
     }
 
+#if UNITY_LOCALIZATION
     public void ApplyLocale(SettingsData settingsData)
     {
       LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(settingsData.LocaleIdentifier);
     }
+#endif
 
     public void ApplyAudio(SettingsData settingsData)
     {
@@ -112,23 +131,27 @@ namespace CupkekGames.Core
       QualitySettings.vSyncCount = settingsData.VSync ? 1 : 0;
     }
 
-    public void ApplyAntiAliasing(SettingsData settingsData)
+#if UNITY_URP
+    public void ApplyAntiAliasingURP(SettingsData settingsData)
     {
       foreach (UniversalRenderPipelineAsset renderPipelineAsset in _renderPipelineAssets)
       {
         renderPipelineAsset.msaaSampleCount = (int)settingsData.AntiAliasing;
       }
     }
+#endif
 
     public void ApplyPostProcessing(SettingsData settingsData)
     {
       // TODO: Implement Post Processing Quality
     }
 
-    public void ApplyShadows(SettingsData settingsData)
+#if UNITY_URP
+    public void ApplyShadowsURP(SettingsData settingsData)
     {
       QualitySettings.renderPipeline = _renderPipelineAssets[(int)settingsData.Shadows];
     }
+#endif
 
     public void ApplyTextureQuality(SettingsData settingsData)
     {
@@ -138,19 +161,6 @@ namespace CupkekGames.Core
     public void ApplyEffectsQuality(SettingsData settingsData)
     {
       // TODO: Implement Effects Quality
-    }
-
-    [ContextMenu("Next Shadow Quality")]
-    private void NextShadowQuality()
-    {
-      int currentShadowQuality = (int)CurrentSettings.Data.Shadows;
-      int nextShadowQuality = currentShadowQuality + 1;
-      if (nextShadowQuality > _renderPipelineAssets.Length - 1)
-      {
-        nextShadowQuality = 0;
-      }
-      CurrentSettings.Data.Shadows = (SettingsData.ShadowsEnum)nextShadowQuality;
-      ApplyShadows(CurrentSettings.Data);
     }
 
     private void DebugPlayerPrefs()
