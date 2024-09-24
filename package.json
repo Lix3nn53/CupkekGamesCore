@@ -16,11 +16,8 @@
   "hideInEditor": false,
   "description": "The Core Library provides essential utilities, data structures, and base functionality to support scalable and efficient game development. It is used by other tools such as CupkekGames UI Framework.",
   "keywords": [
-    "UI",
-    "UI Toolkit",
-    "User Interface",
-    "UI Components",
-    "UI Framework"
+    "Tool",
+    "Core"
   ],
   "documentationUrl": "https://docs.cupkekgames.com/"
 }
