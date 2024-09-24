@@ -197,8 +197,6 @@ namespace CupkekGames.Core
         return null;
       }
 
-      Debug.Log("3: " + instances.Count);
-
       return instances.Count > 0 ? instances[0] : null;
     }
 

@@ -25,7 +25,7 @@ namespace CupkekGames.Core
 
     public void OnComplete()
     {
-      Debug.Log("OnComplete");
+
     }
 
     private void OnDestroy()

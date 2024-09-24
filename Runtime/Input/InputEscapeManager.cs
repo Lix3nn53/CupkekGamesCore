@@ -40,7 +40,6 @@ namespace CupkekGames.Core
       }
 
       _escapeList.Add(entry);
-      Debug.Log("Push");
     }
 
     public void Pop() => PopInternal(null, true);

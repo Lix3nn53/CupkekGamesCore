@@ -310,7 +310,7 @@ namespace CupkekGames.Core
       return sceneLoadRequest;
     }
 
-    public void LoadScenes(List<SceneSO> scenesToLoad, SceneLoadTransition sceneLoadTransitionType)
+    public void LoadScene(List<SceneSO> scenesToLoad, SceneLoadTransition sceneLoadTransitionType)
     {
       LoadSceneRequest(scenesToLoad, null, sceneLoadTransitionType);
     }
@@ -366,7 +366,7 @@ namespace CupkekGames.Core
       LoadSceneRequest(scenesToLoad, scenesToUnLoad, sceneLoadTransitionType);
     }
 
-    public void LoadScenesAndUnLoadCurrent(List<SceneSO> scenesToLoad, SceneLoadTransition sceneLoadTransitionType)
+    public void LoadSceneAndUnLoadCurrent(List<SceneSO> scenesToLoad, SceneLoadTransition sceneLoadTransitionType)
     {
       List<SceneSO> scenesToUnLoad = new List<SceneSO>();
       scenesToUnLoad.AddRange(_loadedScenes);
