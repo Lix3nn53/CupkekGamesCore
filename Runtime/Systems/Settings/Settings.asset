@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141e21bdb3dba4642b62b856fd06879b, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Data
+      Entry: 7
+      Data: 0|Lix.Core.SettingsData, LixCore
+    - Name: 
+      Entry: 12
+      Data: 17
+    - Name: type
+      Entry: 1
+      Data: UnityEngine.Localization.LocaleIdentifier, Unity.Localization
+    - Name: LocaleIdentifier
+      Entry: 7
+      Data: UnityEngine.Localization.LocaleIdentifier, Unity.Localization
+    - Name: m_Code
+      Entry: 1
+      Data: en
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: type
+      Entry: 1
+      Data: System.Single, mscorlib
+    - Name: MasterVolume
+      Entry: 4
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.Single, mscorlib
+    - Name: MusicVolume
+      Entry: 4
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.Single, mscorlib
+    - Name: AmbientVolume
+      Entry: 4
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.Single, mscorlib
+    - Name: SFXVolume
+      Entry: 4
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: UnityEngine.FullScreenMode, UnityEngine.CoreModule
+    - Name: FullScreenMode
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.Boolean, mscorlib
+    - Name: VSync
+      Entry: 5
+      Data: false
+    - Name: type
+      Entry: 1
+      Data: Lix.Core.SettingsData+TargetFrameRateEnum, LixCore
+    - Name: TargetFrameRate
+      Entry: 3
+      Data: 60
+    - Name: type
+      Entry: 1
+      Data: Lix.Core.SettingsData+AntiAliasingEnum, LixCore
+    - Name: AntiAliasing
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: Lix.Core.SettingsData+PostProcessingEnum, LixCore
+    - Name: PostProcessing
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: Lix.Core.SettingsData+ShadowsEnum, LixCore
+    - Name: Shadows
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: Lix.Core.SettingsData+TextureQualityEnum, LixCore
+    - Name: TextureQuality
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: Lix.Core.SettingsData+EffectsQualityEnum, LixCore
+    - Name: EffectsQuality
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: ResolutionWidth
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: ResolutionHeight
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.UInt32, mscorlib
+    - Name: RefreshRateDenominator
+      Entry: 3
+      Data: 0
+    - Name: type
+      Entry: 1
+      Data: System.UInt32, mscorlib
+    - Name: RefreshRateNumerator
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

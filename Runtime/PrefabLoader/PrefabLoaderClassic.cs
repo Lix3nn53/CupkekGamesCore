@@ -1,0 +1,109 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Collections;
+
+namespace CupkekGames.Core
+{
+  public abstract class PrefabLoaderClassic<TKey> : KeyValueDatabaseMono<TKey, GameObject>, IPrefabLoader<TKey, GameObject>
+  {
+    private Dictionary<TKey, List<GameObject>> _instances;
+    [SerializeField] private FolderReference _searchFolder;
+
+    // Event for unloading UI
+    public event Action<TKey> OnInstanceDestroy;
+
+    public List<GameObject> GetInstances(TKey key)
+    {
+      return _instances[key];
+    }
+
+    public GameObject Instantiate(TKey key)
+    {
+      if (!Dictionary.ContainsKey(key)) return null;
+      if (_instances.ContainsKey(key)) return null;
+
+      GameObject instance = Instantiate(Dictionary[key].gameObject);
+
+      AddReportDestroy(key, instance);
+
+      List<GameObject> list;
+      if (_instances.ContainsKey(key))
+      {
+        list = _instances[key];
+      }
+      else
+      {
+        list = new();
+      }
+
+      list.Add(instance);
+
+      _instances[key] = list;
+
+      return instance;
+    }
+
+    public void DestroyAllOf(TKey key)
+    {
+      if (_instances.ContainsKey(key))
+      {
+        List<GameObject> list = _instances[key];
+        foreach (GameObject go in list)
+        {
+          Destroy(go);
+        }
+        _instances.Remove(key);
+
+        OnInstanceDestroy?.Invoke(key);
+      }
+    }
+
+    public IEnumerator DestroyAllOfWithDelay(TKey key, float duration)
+    {
+      yield return new WaitForSeconds(duration);
+
+      List<GameObject> list = _instances[key];
+      foreach (GameObject go in list)
+      {
+        Destroy(go);
+      }
+    }
+
+    public void AddReportDestroy(object key, GameObject instance)
+    {
+      if (!instance.TryGetComponent<PrefabLoaderReportDestroy>(out var report))
+      {
+        report = instance.AddComponent<PrefabLoaderReportDestroy>();
+      }
+
+      report.PrefabLoader = this;
+      report.PrefabKey = key;
+    }
+
+    public void ReportDestroy(object keyObj, GameObject instance)
+    {
+      TKey key = (TKey)keyObj;
+      if (_instances.ContainsKey(key))
+      {
+        List<GameObject> list = _instances[key];
+        if (list.Remove(instance))
+        {
+          if (list.Count == 0)
+          {
+            _instances.Remove(key);
+          }
+
+          OnInstanceDestroy?.Invoke(key);
+        }
+      }
+    }
+    public void DestroyAll()
+    {
+      foreach (var kvp in Dictionary)
+      {
+        DestroyAllOf(kvp.Key);
+      }
+    }
+  }
+}

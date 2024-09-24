@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Plugins/CupkekGames/Core/BehaviourTree/Editor/BehaviourTreeBase.uss?fileID=7433441132597879392&amp;guid=24edc102da14b6e4995864a4d0803ad2&amp;type=3#BehaviourTreeBase" />
+    <Style src="project://database/Assets/Plugins/CupkekGames/Core/BehaviourTree/Editor/BehaviourTreeLeftPanel.uss?fileID=7433441132597879392&amp;guid=86622ce482066364eb7fc72f9e874377&amp;type=3#BehaviourTreeLeftPanel" />
+    <engine:Label text="Inspector" class="title" />
+    <engine:VisualElement name="EditorContainer" style="flex-grow: 1;" />
+</engine:UXML>
