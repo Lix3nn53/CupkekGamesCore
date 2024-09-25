@@ -58,7 +58,7 @@ namespace CupkekGames.Core
 
       sceneLoader.SetActiveScene(startScenes[0]);
 
-      sceneLoader.LoadScenes(startScenes, sceneLoader.TransitionManager.Transitions.Dictionary["Fade"]);
+      sceneLoader.LoadScene(startScenes, sceneLoader.TransitionManager.Transitions.Dictionary["Fade"]);
     }
   }
 }
