@@ -8,7 +8,7 @@
   },
   "samples": [
     {
-      "displayName": "CupkekGames Core Examples",
+      "displayName": "Core Examples",
       "description": "Sample scenes which demonstrate how to use CupkekGames Core Library.",
       "path": "Samples~"
     }
