@@ -12,6 +12,8 @@ namespace CupkekGames.Core
     // State
     private List<InputEscapeEntry> _escapeList = new();
 
+    private bool _isBlocked = false;
+
     private void OnEnable()
     {
       _coreEventDatabase.InputEscapeEvent += OnEscape;
@@ -55,6 +57,11 @@ namespace CupkekGames.Core
         return;
       }
 
+      if (execute && _isBlocked)
+      {
+        return;
+      }
+
       InputEscapeEntry? entry = null;
       int index = key.HasValue
           ? _escapeList.FindIndex(e => e.Key == key.Value)
@@ -70,6 +77,10 @@ namespace CupkekGames.Core
       {
         entry.Value.Action.Invoke();
       }
+    }
+    public void SetBlocked(bool value)
+    {
+      _isBlocked = value;
     }
   }
 }
