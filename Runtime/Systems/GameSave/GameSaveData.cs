@@ -7,7 +7,10 @@ namespace CupkekGames.Core
   {
     public int Number;
     public DateTime SaveDate;
-    public GameSaveData(int number)
+
+    // Reflection is used to construct this object.
+    // Make sure not to change the constructor parameters when deriving from this class.
+    public GameSaveData(string fileName, int number)
     {
       Number = number;
     }

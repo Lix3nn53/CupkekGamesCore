@@ -10,7 +10,10 @@ namespace CupkekGames.Core
   public abstract class PrefabLoaderAddressable<TKey> : KeyValueDatabaseMono<TKey, AssetReference>, IPrefabLoader<TKey, AssetReference>
   {
     [SerializeField] private AddressableAssetManager _addressableAssetManager;
-    [SerializeField] string _searchLabel = "Prefab";
+#pragma warning disable CS0168  // Disable warning for unused variables
+    [SerializeField] string _searchLabel = "Prefab"; // Used by editor code
+#pragma warning restore CS0168  // Restore the warning after
+
     public event EventHandler<TKey> OnInstanceDestroyed;
 
     protected override void Awake()
@@ -42,6 +45,13 @@ namespace CupkekGames.Core
 
     public GameObject Instantiate(TKey key)
     {
+      if (!Dictionary.ContainsKey(key))
+      {
+        Debug.LogWarning("Key not found: " + key);
+
+        return null;
+      }
+
       GameObject instance = _addressableAssetManager.InstantiateSync(Dictionary[key]);
 
       AddReportDestroy(key, instance);

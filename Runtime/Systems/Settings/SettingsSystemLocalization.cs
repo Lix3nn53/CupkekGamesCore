@@ -8,12 +8,8 @@ using UnityEngine.Localization.Settings;
 
 namespace CupkekGames.Core
 {
-  public class UISettingsLanguageComponent : MonoBehaviour
+  public class SettingsSystemLocalization : MonoBehaviour
   {
-    // [SerializeField] private UISettingItemFiller _languageField;
-    // [SerializeField] private UIGenericButton _saveButton;
-    // [SerializeField] private UIGenericButton _resetButton;
-
     public event Action<Locale> _save = delegate { };
 
     private int _currentSelectedOption = 0;
@@ -115,6 +111,11 @@ namespace CupkekGames.Core
     {
       _currentSelectedOption = _savedSelectedOption;
       OnSelectionChanged();
+    }
+
+    public void ApplySettings(SettingsData settingsData)
+    {
+      LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(settingsData.LocaleIdentifier);
     }
   }
 }

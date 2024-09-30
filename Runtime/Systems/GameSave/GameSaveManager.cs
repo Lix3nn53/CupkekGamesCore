@@ -10,8 +10,6 @@ namespace CupkekGames.Core
   {
     // Settings
     public string FileExtenstion = "save";
-    // Events
-    public event Action SaveToFileEvent;
     // State
     public GameSaveDataSO<TSaveData> CurrentSave;
 
@@ -23,7 +21,7 @@ namespace CupkekGames.Core
 
       foreach (string fileName in fileNames)
       {
-        if (!fileName.Contains("save"))
+        if (!fileName.Contains(FileExtenstion))
         {
           continue;
         }
@@ -36,7 +34,7 @@ namespace CupkekGames.Core
         TSaveData data;
         try
         {
-          data = (TSaveData)Activator.CreateInstance(typeof(TSaveData), new object[] { number });
+          data = (TSaveData)Activator.CreateInstance(typeof(TSaveData), new object[] { fileName, number });
         }
         catch (Exception e)
         {
@@ -59,14 +57,6 @@ namespace CupkekGames.Core
       }
 
       TSaveData result = list[0];
-
-      foreach (TSaveData save in list)
-      {
-        if (save.SaveDate > result.SaveDate)
-        {
-          result = save;
-        }
-      }
 
       return result;
     }
@@ -138,7 +128,6 @@ namespace CupkekGames.Core
       // if code reached here, there are invalid files only. In that case for loop above doesn't save. So save to first slot here.
       SaveToFile(0, data);
     }
-
     protected abstract void OnSaveRequest(string fileName, TSaveData data);
     protected abstract void OnDeleteRequest(string fileName);
     protected abstract List<string> GetAllFileNames();

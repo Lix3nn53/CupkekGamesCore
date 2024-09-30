@@ -20,7 +20,13 @@ namespace CupkekGames.Core
 
     public GameObject Instantiate(TKey key)
     {
-      if (!Dictionary.ContainsKey(key)) return null;
+      if (!Dictionary.ContainsKey(key))
+      {
+        Debug.LogWarning("Key not found: " + key);
+
+        return null;
+      }
+
       if (_instances.ContainsKey(key)) return null;
 
       GameObject instance = Instantiate(Dictionary[key].gameObject);
