@@ -23,8 +23,9 @@ namespace CupkekGames.Core
 
     //Parameters coming from scene loading requests
     private SceneSO _activeScene;
-    [SerializeField] private List<SceneSO> _loadedScenes = new List<SceneSO>();
 
+    [MultiLineHeader("For debug purposes only. Do not modify.")]
+    [SerializeField] private List<SceneSO> _loadedScenes = new List<SceneSO>();
     public List<SceneSO> LoadedScenes => _loadedScenes;
     private List<SceneLoadRequest> _sceneLoadRequests = new List<SceneLoadRequest>();
 
@@ -199,11 +200,6 @@ namespace CupkekGames.Core
       {
         LoadNewScenes();
       }
-    }
-
-    private void ExitGame()
-    {
-      Application.Quit();
     }
 
     // To prevent a new loading request while already loading a new scene

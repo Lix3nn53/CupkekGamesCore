@@ -16,7 +16,7 @@ namespace CupkekGames.Core
 
   public class InitializationLoader : MonoBehaviour
   {
-    [MultiLineHeader("Persistent Scenes\nScenes that will load at start and never unload again.\nThese scenes are NOT managed by SceneLoader.\nDo not create GameSceneSO for them.")]
+    [MultiLineHeader("Persistent Scenes\nScenes that will load at start and never unload again.\nThese scenes are NOT managed by SceneLoader.\nDo not create SceneSO for them.")]
     [SerializeField] private List<AssetReferenceT<SceneAsset>> persistentScenes;
     [MultiLineHeader("Start Scenes\nScenes to load after persistent scenes are loaded.\nThese scenes are managed by SceneLoader.")]
     [SerializeField] private List<SceneSO> startScenes;

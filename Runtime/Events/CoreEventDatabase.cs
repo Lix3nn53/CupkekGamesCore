@@ -16,11 +16,12 @@ namespace CupkekGames.Core
 
     // Scene Management Events
     public Action<bool, float> LoadingScreenToggleEvent; // fadeIn, duration
-#if UNITY_ADDRESSABLES
 
+#if UNITY_ADDRESSABLES
     public Action<List<SceneSO>> SceneReadyEvent;
     public Action<List<SceneSO>> SceneUnloadEvent;
 #endif
+
     // Input Events
     public Action InputEscapeEvent;
   }

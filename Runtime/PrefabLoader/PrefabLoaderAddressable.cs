@@ -11,8 +11,7 @@ namespace CupkekGames.Core
   {
     [SerializeField] private AddressableAssetManager _addressableAssetManager;
     [SerializeField] string _searchLabel = "Prefab";
-
-    public event Action<TKey> OnInstanceDestroy;
+    public event EventHandler<TKey> OnInstanceDestroyed;
 
     protected override void Awake()
     {
@@ -56,7 +55,7 @@ namespace CupkekGames.Core
 
       if (unloaded)
       {
-        OnInstanceDestroy?.Invoke(key);
+        OnInstanceDestroyed?.Invoke(this, key);
       }
     }
 
@@ -85,7 +84,7 @@ namespace CupkekGames.Core
 
     public void ReportDestroy(object key, GameObject instance)
     {
-      OnInstanceDestroy?.Invoke((TKey)key);
+      OnInstanceDestroyed?.Invoke(this, (TKey)key);
     }
 
     public void DestroyAll()

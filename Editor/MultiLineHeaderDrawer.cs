@@ -8,8 +8,12 @@ namespace CupkekGames.Core.CGEditor
     public class MultiLineHeaderDrawer : DecoratorDrawer
     {
         // Custom colors and border radius
-        private Color backgroundColor = new Color(0f, 0f, 0f, 0.4f);  // Light gray background
-        private Color borderColor = new Color(0f, 0f, 0f, 0.6f);
+        private Color backgroundColor = new Color(0f, 0f, 0f, 0.2f);  // Light gray background
+        private Color borderColor = new Color(0f, 0f, 0f, 0.4f);
+        private float margin = 5f;  // Margin around the header
+
+        // Cached height to avoid calling GUI functions in GetHeight
+        private float cachedHeight;
         public override void OnGUI(Rect position)
         {
             MultiLineHeaderAttribute header = (MultiLineHeaderAttribute)attribute;
@@ -20,22 +24,24 @@ namespace CupkekGames.Core.CGEditor
                 padding = new RectOffset(10, 10, 5, 5)  // Padding inside the header box
             };
 
-            DrawBackgroundWithBorderRadius(position);
+            // Adjust position to include margin
+            Rect marginRect = new Rect(
+                position.x + margin,
+                position.y + margin,
+                position.width - 2 * margin,
+                position.height - 2 * margin
+            );
+
+            DrawBackgroundWithBorderRadius(marginRect);
 
             EditorGUI.LabelField(position, header.headerText, style);
+
+            cachedHeight = style.CalcHeight(new GUIContent(header.headerText), position.width) + style.padding.top + style.padding.bottom;
         }
 
         public override float GetHeight()
         {
-            MultiLineHeaderAttribute header = (MultiLineHeaderAttribute)attribute;
-            GUIStyle style = new GUIStyle(EditorStyles.label)
-            {
-                wordWrap = true,
-                padding = new RectOffset(10, 10, 5, 5)
-            };
-
-            // Calculate height based on content
-            return style.CalcHeight(new GUIContent(header.headerText), EditorGUIUtility.currentViewWidth) + style.padding.top + style.padding.bottom;
+            return cachedHeight;
         }
 
         private void DrawBackgroundWithBorderRadius(Rect position)

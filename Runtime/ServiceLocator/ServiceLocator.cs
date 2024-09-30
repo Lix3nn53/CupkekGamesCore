@@ -14,6 +14,13 @@ namespace CupkekGames.Core
       return serviceDescriptors;
     }
 
+    public static void Register(object implementation)
+    {
+      ServiceDescriptor serviceDescriptor = new ServiceDescriptor(implementation);
+
+      Register(serviceDescriptor);
+    }
+
     public static void Register(ServiceDescriptor serviceDescriptor)
     {
       IDictionary<Type, ServiceDescriptor> serviceDescriptors = GetServiceDescriptors();

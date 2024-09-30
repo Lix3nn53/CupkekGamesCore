@@ -7,11 +7,11 @@ namespace CupkekGames.Core
 {
   public abstract class PrefabLoaderClassic<TKey> : KeyValueDatabaseMono<TKey, GameObject>, IPrefabLoader<TKey, GameObject>
   {
-    private Dictionary<TKey, List<GameObject>> _instances;
+    private Dictionary<TKey, List<GameObject>> _instances = new();
     [SerializeField] private FolderReference _searchFolder;
 
     // Event for unloading UI
-    public event Action<TKey> OnInstanceDestroy;
+    public event EventHandler<TKey> OnInstanceDestroyed;
 
     public List<GameObject> GetInstances(TKey key)
     {
@@ -55,7 +55,7 @@ namespace CupkekGames.Core
         }
         _instances.Remove(key);
 
-        OnInstanceDestroy?.Invoke(key);
+        OnInstanceDestroyed?.Invoke(this, key);
       }
     }
 
@@ -94,7 +94,7 @@ namespace CupkekGames.Core
             _instances.Remove(key);
           }
 
-          OnInstanceDestroy?.Invoke(key);
+          OnInstanceDestroyed?.Invoke(this, key);
         }
       }
     }
