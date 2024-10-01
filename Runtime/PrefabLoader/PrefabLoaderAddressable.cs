@@ -10,9 +10,10 @@ namespace CupkekGames.Core
   public abstract class PrefabLoaderAddressable<TKey> : KeyValueDatabaseMono<TKey, AssetReference>, IPrefabLoader<TKey, AssetReference>
   {
     [SerializeField] private AddressableAssetManager _addressableAssetManager;
-#pragma warning disable CS0168  // Disable warning for unused variables
+
+#pragma warning disable CS0414
     [SerializeField] string _searchLabel = "Prefab"; // Used by editor code
-#pragma warning restore CS0168  // Restore the warning after
+#pragma warning restore CS0414
 
     public event EventHandler<TKey> OnInstanceDestroyed;
 
